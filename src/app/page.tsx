@@ -1,101 +1,77 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { data } from '@/data/data'
+import Image from 'next/image'
+import React, { useEffect, useState } from 'react'
+
+const page = () => {
+  const [currentTime, setCurrentTime] = useState('');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const formattedDate = now.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+      });
+
+      const formattedTime = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      }).toLowerCase();
+
+      setCurrentTime(`${formattedDate} ${formattedTime}`);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className='max-w-[450px] bg-black h-screen flex items-center justify-center'>
+      <div className='w-full h-[580px] relative'>
+        {/* Image */}
+        <Image 
+          src='/images/01.jpeg' 
+          fill 
+          alt='' 
+          className='object-cover'
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+        
+        <div className='flex items-center gap-2 absolute bottom-[.7rem] w-[96%] h-[90px] p-[1rem] left-[.5rem] right-2'>
+          {/* Left Image */}
+          <div className='w-[25%] h-full relative'>
+            <Image 
+              src='/images/pic03.jpg' 
+              alt='s' 
+              fill
+              className='object-cover' 
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
+
+          {/* Glassmorphic Transparent Overlay */}
+          <div className='w-[75%] h-full rounded-sm font-[400] font-sans rounded-tr-[0px] leading-[16px] padding text-white bg-[rgba(0,0,0,0.55)] backdrop-filter'>
+            <div style={{ paddingTop: '2px'}} className='flex items-center gap-1 absolute right-[0] top-[-1.05rem] font-[900] m-3 bg-[rgba(0,0,0,0.55)] backdrop-filter'>
+              <Image 
+                src='/images/gps.jpg' 
+                alt='s' 
+                height={15} 
+                width={15} 
+                className='object-contain pl-2 rounded-[2px]' 
+                style={{ height: '15px', width: '15px'}}
+              />
+              <p className='text-[0.45rem]' style={{ paddingRight: '1px', fontWeight: '600'}}>GPS Map Camera</p>
+            </div>
+            <p className='text-[0.7rem]'>{data.location}</p>
+            <span className='text-[0.75rem]'>{data.address}</span>
+            <p className='text-[0.75rem]'>Lat {data.lat} Long {data.long}</p>
+            <p className='uppercase text-[0.75rem]'>{currentTime} GMT +01:00</p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
-  );
+  )
 }
+
+export default page;
