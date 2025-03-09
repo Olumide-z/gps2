@@ -39,7 +39,7 @@ const page = () => {
           className='object-cover'
         />
         
-        <div className='flex items-center gap-2 absolute bottom-[.7rem] w-[96%] h-[90px] p-[1rem] left-[.5rem] right-2'>
+        <div className='flex items-center gap-2 absolute bottom-[.7rem] w-[96%] h-[95px] p-[1rem] left-[.5rem] right-2'>
           {/* Left Image */}
           <div className='w-[25%] h-full relative'>
             <Image 
@@ -51,7 +51,7 @@ const page = () => {
           </div>
 
           {/* Glassmorphic Transparent Overlay */}
-          <div className='w-[75%] h-full rounded-sm font-[400] font-sans rounded-tr-[0px] leading-[15px] padding text-white bg-[rgba(0,0,0,0.55)] backdrop-filter'>
+          <div className='w-[75%] h-full rounded-sm font-[500] font-sans rounded-tr-[0px] leading-[15px] padding text-white bg-[rgba(0,0,0,0.55)] backdrop-filter'>
             <div style={{ paddingTop: '2px'}} className='flex items-center gap-1 absolute right-[0] top-[-1.07rem] font-[900] m-3 bg-[rgba(0,0,0,0.55)] backdrop-filter'>
               <Image 
                 src='/images/gps.jpg' 
