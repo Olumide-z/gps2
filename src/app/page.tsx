@@ -43,7 +43,7 @@ const page = () => {
           {/* Left Image */}
           <div className='w-[25%] h-full relative'>
             <Image 
-              src='/images/pic03.jpeg' 
+              src='/images/pic03.jpg' 
               alt='s' 
               fill
               className='object-cover' 
